@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Protected Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #f8f8f8;
+      text-align: center;
+      padding: 50px;
+    }
+    #passwordPrompt {
+      margin-top: 50px;
+    }
+    input {
+      padding: 10px;
+      margin-top: 20px;
+      width: 250px;
+    }
+    button {
+      padding: 10px 15px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    #error {
+      color: #ff4c4c;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="passwordPrompt">
+    <h2>Enter Password to Access</h2>
+    <input type="password" id="passwordInput" placeholder="Enter password" />
+    <button onclick="checkPassword()">Enter</button>
+    <p id="error"></p>
+  </div>
+
+  <script>
+    const correctPassword = "nur nabila suwachi";
+    const redirectLink = "https://docs.google.com/presentation/d/1LBnvJhy0P7aGDL_rfiDhWfNDLfgrVQcMN_UXoRVEbbM/edit?usp=drivesdk";
+
+    function checkPassword() {
+      const input = document.getElementById("passwordInput").value.trim();
+      const error = document.getElementById("error");
+
+      if (input.toLowerCase() === correctPassword.toLowerCase()) {
+        document.getElementById("passwordPrompt").style.display = "none";
+        let seeLink = confirm("Password correct! Would you like to see the link now?");
+        if (seeLink) {
+          window.location.href = redirectLink;
+        } else {
+          alert("You can refresh the page to enter the password again anytime.");
+        }
+      } else {
+        error.textContent = "Incorrect password. Try again.";
+      }
+    }
+  </script>
+
+</body>
+</html>
